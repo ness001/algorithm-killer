@@ -1,0 +1,41 @@
+class Solution:
+    def replaceSpace(self, s: str) -> str:
+        # time: n  space: o(1)
+        # return s.replace(" ","%20")
+        
+        # 2. new string , t: n; s: n
+        # result=""
+        # for c in s:
+        #     if c!=" ":
+        #         result += c
+        #     else:
+        #         result+="%20"
+        # return result
+
+        #3. from the last to the first
+        space_n=0
+        for c in s:
+            if c==" ":
+                space_n +=1
+            #new string add new space
+
+        result=s + "  "*space_n 
+        p1=len(s)-1
+        p2=len(result) -1
+
+        s=list(s)
+        result=list(result)
+
+        while ( p1>=0):
+            if s[p1] !=" ":
+                result[p2] = s[p1]
+                p2 -=1
+            else:
+                result[p2]="0"
+                result[p2-1]="2"
+                result[p2-2]="%"
+                p2 -=3
+            p1 -=1
+                
+            
+        return "".join(result)
